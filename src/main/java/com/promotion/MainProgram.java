@@ -33,11 +33,23 @@ public class MainProgram {
 
         for(ProductItem productItem: cart.getCartItems()){
             try {
+                char skuId = productItem.getProduct().getSkuId();
+                //skipping this promotion on C and D
+                if(skuId != 'C' && skuId != 'D'){
                     totalOrderValue += applyPromotion(productItem);
+                }
             }
             catch (Exception e){
                 e.printStackTrace();
             }
+        }
+        //combo C and D and also if C and D are more than combination
+        // 1 * C and 2 *D will yield 30+15 = 45 for C and D combo rule
+        try {
+            totalOrderValue += applyPromotion(cart);
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
 
         System.out.print("Final cart amount is: "+ totalOrderValue);
@@ -49,6 +61,15 @@ public class MainProgram {
      */
     private static int applyPromotion(ProductItem prodItem) throws Exception {
         int orderValue = PromotionEngine.run(PromotionEngine.createRuleExecution(PromotionRuleDefinition.nItemRule(), prodItem));
+
+        return orderValue;
+    }
+
+    /*
+     * accept cart as parameter
+     */
+    private static int applyPromotion(Cart cart) throws Exception {
+        int orderValue = PromotionEngine.run(PromotionEngine.createRuleExecution(PromotionRuleDefinition.comboRule(), cart));
 
         return orderValue;
     }
