@@ -49,4 +49,18 @@ public class UseCaseTests {
         MainProgram.main(args);
         assertEquals("Final cart amount is: 280", outContent.toString());
     }
+
+    @Test
+    public void testScenarioD(){
+        String[] args = new String[]{"3", "5", "2", "1"};
+        MainProgram.main(args);
+        assertEquals("Final cart amount is: 300", outContent.toString());
+    }
+
+    @Test
+    public void testScenarioE(){
+        String[] args = new String[]{"3", "5", "2", "3"};
+        MainProgram.main(args);
+        assertEquals("Final cart amount is: 325", outContent.toString());
+    }
 }
