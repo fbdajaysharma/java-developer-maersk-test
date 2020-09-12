@@ -9,6 +9,7 @@ import com.promotion.rules.RuleExecution;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class MainProgram {
     public static void main(String[] args) {
@@ -20,10 +21,12 @@ public class MainProgram {
         Product pc = new Product('C', 20);
         Product pd = new Product('D', 15);
 
-        ProductItem prodItemA = new ProductItem(pa, 3);
-        ProductItem prodItemB = new ProductItem(pb, 5);
-        ProductItem prodItemC = new ProductItem(pc, 2);
-        ProductItem prodItemD = new ProductItem(pd, 2);
+        int[] inputQty = Stream.of(args).mapToInt(Integer::parseInt).toArray();
+
+        ProductItem prodItemA = new ProductItem(pa, inputQty[0]);
+        ProductItem prodItemB = new ProductItem(pb, inputQty[1]);
+        ProductItem prodItemC = new ProductItem(pc, inputQty[2]);
+        ProductItem prodItemD = new ProductItem(pd, inputQty[3]);
 
         List<ProductItem> productList = Arrays.asList(prodItemA, prodItemB, prodItemC, prodItemD);
 
