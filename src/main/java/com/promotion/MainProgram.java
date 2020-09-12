@@ -25,8 +25,13 @@ public class MainProgram {
         ProductItem prodItemC = new ProductItem(pc, 2);
         ProductItem prodItemD = new ProductItem(pd, 2);
 
-        System.out.print("Final cart amount is: "+ totalOrderValue);
+        List<ProductItem> productList = Arrays.asList(prodItemA, prodItemB, prodItemC, prodItemD);
 
+        Cart cart = new Cart();
+        cart.setCartItems(productList);
+
+        System.out.print("Final cart amount is: "+ totalOrderValue);
+        //with this input set output will be 310
     }
 
     /*
