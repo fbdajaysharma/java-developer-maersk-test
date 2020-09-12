@@ -44,7 +44,7 @@ public class RedTest {
 	public void testMain() {
 		String[] args = new String[]{"Hello"};
 		MainProgram.main(args);
-		assertEquals("Final cart amount is: 100", outContent.toString());
+		assertEquals("Final cart amount is: 0", outContent.toString());
 	}
 
 	@Test
