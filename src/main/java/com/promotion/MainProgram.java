@@ -33,21 +33,4 @@ public class MainProgram {
         System.out.print("Final cart amount is: "+ totalOrderValue);
         //with this input set output will be 310
     }
-
-    /*
-    * accept Product Item as parameter
-     */
-    private static int applyPromotion(ProductItem prodItem) throws Exception {
-        int orderValue = PromotionEngine.run(PromotionEngine.createRuleExecution(PromotionRuleDefinition.nItemRule(), prodItem));
-
-        return orderValue;
-    }
-    /*
-    * accept cart as parameter
-     */
-    private static int applyPromotion(Cart cart) throws Exception {
-        int orderValue = PromotionEngine.run(PromotionEngine.createRuleExecution(PromotionRuleDefinition.comboRule(), cart));
-
-        return orderValue;
-    }
 }
