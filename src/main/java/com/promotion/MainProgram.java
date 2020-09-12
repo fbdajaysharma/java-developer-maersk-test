@@ -5,8 +5,6 @@ import com.promotion.pojos.Product;
 import com.promotion.pojos.ProductItem;
 import com.promotion.rules.PromotionEngine;
 import com.promotion.rules.PromotionRuleDefinition;
-import com.promotion.rules.RuleExecution;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -33,7 +31,25 @@ public class MainProgram {
         Cart cart = new Cart();
         cart.setCartItems(productList);
 
+        for(ProductItem productItem: cart.getCartItems()){
+            try {
+                    totalOrderValue += applyPromotion(productItem);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         System.out.print("Final cart amount is: "+ totalOrderValue);
         //with this input set output will be 310
+    }
+
+    /*
+     * accept Product Item as parameter
+     */
+    private static int applyPromotion(ProductItem prodItem) throws Exception {
+        int orderValue = PromotionEngine.run(PromotionEngine.createRuleExecution(PromotionRuleDefinition.nItemRule(), prodItem));
+
+        return orderValue;
     }
 }

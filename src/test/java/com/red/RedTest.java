@@ -42,7 +42,7 @@ public class RedTest {
 	
 	@Test
 	public void testMain() {
-		String[] args = new String[]{"1", "1", "1", "0"};
+		String[] args = new String[]{"0", "0", "0", "0"};
 		MainProgram.main(args);
 		assertEquals("Final cart amount is: 0", outContent.toString());
 	}
