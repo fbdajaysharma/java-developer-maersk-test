@@ -3,7 +3,9 @@ package com.green;
 import com.promotion.MainProgram;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -62,5 +64,15 @@ public class UseCaseTests {
         String[] args = new String[]{"3", "5", "2", "3"};
         MainProgram.main(args);
         assertEquals("Final cart amount is: 325", outContent.toString());
+    }
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
+    @Test
+    public void negativeCase(){
+        String[] args = new String[]{};
+        exception.expect(ArrayIndexOutOfBoundsException.class);
+        MainProgram.main(args);
     }
 }

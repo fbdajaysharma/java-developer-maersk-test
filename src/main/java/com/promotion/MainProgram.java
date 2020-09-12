@@ -5,6 +5,8 @@ import com.promotion.pojos.Product;
 import com.promotion.pojos.ProductItem;
 import com.promotion.rules.PromotionEngine;
 import com.promotion.rules.PromotionRuleDefinition;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,14 +21,22 @@ public class MainProgram {
         Product pc = new Product('C', 20);
         Product pd = new Product('D', 15);
 
-        int[] inputQty = Stream.of(args).mapToInt(Integer::parseInt).toArray();
+        List<ProductItem> productList = new ArrayList<>();
 
-        ProductItem prodItemA = new ProductItem(pa, inputQty[0]);
-        ProductItem prodItemB = new ProductItem(pb, inputQty[1]);
-        ProductItem prodItemC = new ProductItem(pc, inputQty[2]);
-        ProductItem prodItemD = new ProductItem(pd, inputQty[3]);
+        try {
+            int[] inputQty = Stream.of(args).mapToInt(Integer::parseInt).toArray();
+            ProductItem prodItemA = new ProductItem(pa, inputQty[0]);
+            ProductItem prodItemB = new ProductItem(pb, inputQty[1]);
+            ProductItem prodItemC = new ProductItem(pc, inputQty[2]);
+            ProductItem prodItemD = new ProductItem(pd, inputQty[3]);
 
-        List<ProductItem> productList = Arrays.asList(prodItemA, prodItemB, prodItemC, prodItemD);
+            productList = Arrays.asList(prodItemA, prodItemB, prodItemC, prodItemD);
+        }
+        catch(Exception e){
+            System.out.print("Please give 4 inputs, so simplicity of the application, you can specify 0");
+            e.printStackTrace();
+        }
+
 
         Cart cart = new Cart();
         cart.setCartItems(productList);
